@@ -1,0 +1,64 @@
+---
+let raceData: { 
+driverFullName: string; 
+teamName: string; 
+points: number; 
+}[] | null = null;
+
+const url = "https://f1connectapi.vercel.app/api/current/last/race?limit=20"
+try {
+  const response = await fetch(url)
+  const json = await response.json()
+  const race = json.results;
+  raceData = race((entry:any) =>({
+  points: entry.points,
+    driverFullName: `${entry.driver.name} ${entry.driver.surname}`,
+    teamName: entry.team.teamName,
+  }))
+
+} catch(e){
+  console.error(e)
+  }
+
+  import Time from './icons/Time.astro'
+---
+
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg w-fit pt-20 pl-50">
+    <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
+        <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Nombre 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Equipo 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Puntaje 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Tiempo 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {raceData?.map((item) => ( 
+            <tr class="bg-blue-500 border-b border-blue-400">
+                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
+                  
+                </th>
+                <td class="px-6 py-4">
+                    Silver
+                </td>
+                <td class="px-6 py-4">
+                    Laptop
+                </td>
+                <td class="px-6 py-4">
+                    $2999
+                </td>
+            }))
+        </tbody>
+    </table>
+</div>
+

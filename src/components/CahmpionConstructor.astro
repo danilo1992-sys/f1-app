@@ -1,0 +1,57 @@
+---
+import Teams from './icons/Teams.astro'
+let teamData: { 
+teamName: string; 
+points: number; 
+}[] | null = null;
+
+const url = "https://f1api.dev/api/current/constructors-championship?limit=10&offset=0"
+try {
+  const response = await fetch(url)
+  const json = await response.json()
+  const rawDrivers = json.constructors_championship;
+  teamData = rawDrivers.map((entry:any) =>({
+    points: entry.points,
+    teamName: entry.team.teamName,
+    country:entry.team.country,
+  }))
+
+} catch(e){
+  console.error(e)
+}
+--- 
+<div class="pl-50 pt-10 pb-2 font-bold flex"> 
+  <Teams/> 
+    <h1 class="text-xl">Campeonato de constructores<h1/>
+</div>
+<div class="relative overflow-x-auto sm:rounded-l pl-50 pb-20">
+    <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 w-fit rounded-xl">
+        <thead class="text-xs text-gray-700 bg-gray-700 uppercase dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Escuderia
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Puntaje 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Pais 
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {teamData?.map((item) => (
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  {item.teamName}
+                </th>
+                <td class="px-6 py-4">
+                  {item.points}
+                </td>
+                <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  {item.country}
+                </td>
+                }))
+        </tbody>
+    </table>
+</div>

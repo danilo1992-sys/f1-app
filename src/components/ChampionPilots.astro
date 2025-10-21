@@ -1,0 +1,61 @@
+--- 
+import Drivers from './icons/Drivers.astro'
+
+let driverData: { 
+driverFullName: string; 
+teamName: string; 
+points: number; 
+}[] | null = null;
+
+const url = "https://f1connectapi.vercel.app/api/current/drivers-championship?limit=20&offset=0"
+try {
+  const response = await fetch(url)
+  const json = await response.json()
+  const rawDrivers = json.drivers_championship;
+  driverData = rawDrivers.map((entry:any) =>({
+  points: entry.points,
+    driverFullName: `${entry.driver.name} ${entry.driver.surname}`,
+    teamName: entry.team.teamName,
+  }))
+
+} catch(e){
+  console.error(e)
+  }
+
+---
+<div class="pl-50 flex pt-10 pb-2 font-bold">
+  <Drivers />
+  <h1 class="text-xl">Campeonato de Pilotos</h1>
+</div>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg w-fit rounded-md pl-50 pt-5">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Nombre
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Escuderia 
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    Puntaje
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          {driverData.map((item) => (
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+                  {item.driverFullName}
+                </th>
+                <td class="px-6 py-4">
+                  {item.teamName}
+                </td>
+                <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+                  {item.points}
+                </td>
+                }))
+        </tbody>
+    </table>
+</div>
+
