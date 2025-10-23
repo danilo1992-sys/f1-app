@@ -1,5 +1,6 @@
 ---
 import "../assets/app.css";
+import Navbar from '../components/navbar.astro'
 ---
 
 <!doctype html>
@@ -10,10 +11,11 @@ import "../assets/app.css";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+  </head>
+  <body>
+    <Navbar/>
+    <slot />
+  </body>
 </html>
 
 <style>

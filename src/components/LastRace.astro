@@ -2,18 +2,21 @@
 let raceData: { 
 driverFullName: string; 
 teamName: string; 
-points: number; 
+points: number;
+time: number;
 }[] | null = null;
 
 const url = "https://f1connectapi.vercel.app/api/current/last/race?limit=20"
+
 try {
   const response = await fetch(url)
   const json = await response.json()
   const race = json.results;
-  raceData = race((entry:any) =>({
-  points: entry.points,
+  raceData = race((entry:any) =>({ 
+    points: entry.points,
     driverFullName: `${entry.driver.name} ${entry.driver.surname}`,
     teamName: entry.team.teamName,
+    time: entry.time,
   }))
 
 } catch(e){
@@ -21,12 +24,15 @@ try {
   }
 
   import Time from './icons/Time.astro'
----
-
+--- 
+<div class="pl-50 pt-20 flex font-bold">
+  <Time/>
+    <h1 class="text-xl">Ultima Carrera </h1>
+</div>
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-fit pt-20 pl-50">
-    <table class="w-full text-sm text-left rtl:text-right text-blue-100 dark:text-blue-100">
-        <thead class="text-xs text-white uppercase bg-blue-600 dark:text-white">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     Nombre 
@@ -44,18 +50,18 @@ try {
         </thead>
         <tbody>
           {raceData?.map((item) => ( 
-            <tr class="bg-blue-500 border-b border-blue-400">
-                <th scope="row" class="px-6 py-4 font-medium text-blue-50 whitespace-nowrap dark:text-blue-100">
-                  
+            <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700 border-gray-200">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  {item.driverFullName} 
                 </th>
                 <td class="px-6 py-4">
-                    Silver
+                  {item.teamName}
                 </td>
                 <td class="px-6 py-4">
-                    Laptop
+                  {item.points}
                 </td>
                 <td class="px-6 py-4">
-                    $2999
+                  {item.time}
                 </td>
             }))
         </tbody>
