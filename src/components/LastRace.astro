@@ -1,4 +1,6 @@
----
+--- 
+import Time from './icons/Time.astro'
+
 let raceData: { 
 driverFullName: string; 
 teamName: string; 
@@ -7,29 +9,24 @@ time: number;
 }[] | null = null;
 
 const url = "https://f1connectapi.vercel.app/api/current/last/race?limit=20"
-
 try {
   const response = await fetch(url)
   const json = await response.json()
-  const race = json.results;
-  raceData = race((entry:any) =>({ 
-    points: entry.points,
+  const race = json.races.results;
+  raceData = race.map((entry:any) =>({ 
+    points: entry.points, 
     driverFullName: `${entry.driver.name} ${entry.driver.surname}`,
     teamName: entry.team.teamName,
     time: entry.time,
-  }))
-
+  })) 
 } catch(e){
-  console.error(e)
+    console.error(e)
   }
-
-  import Time from './icons/Time.astro'
 --- 
 <div class="pl-50 pt-20 flex font-bold">
   <Time/>
     <h1 class="text-xl">Ultima Carrera </h1>
 </div>
-
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg w-fit pt-20 pl-50">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
