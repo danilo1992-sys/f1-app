@@ -1,0 +1,29 @@
+---
+let nextRace : {
+  record: number; 
+  country: string; 
+  circuitName: string;
+  city: string; 
+  circuitLenght: number; 
+  fasterDriver: string; 
+  fasterLapYerar: number; 
+  }
+
+  const url = "https://f1api.dev/api/current/next"
+  try {
+  const response = await fetch(url)
+  const json = await response.json()
+  const raceNext = json.race.circuit; 
+  nextRace = raceNext.map((entry:anu) => ({
+    record: entry.lapRecord,
+    country: entry.country,
+    city: entry.city,
+    circuitName: entry.circuitName,
+    circuitLenght: entry,
+  }))
+  } catch(e){
+    console.error(e)
+  }
+---
+
+
