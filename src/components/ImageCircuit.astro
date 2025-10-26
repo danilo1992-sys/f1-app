@@ -1,0 +1,21 @@
+---
+interface Props{
+  circuitNameForImage: string; 
+}
+
+const {circuitNameForImage} = Astro.props
+
+const url = `https://google-search72.p.rapidapi.com/imagesearch?q=${circuitNameForImage}gl=us&lr=lang_en&num=10&page=1`
+const options = {
+  method: 'GET',
+  headers: {
+    'x-rapidapi-key': 'b9e2d7f868mshf9a025cb35dbb64p1b2a9djsn18ae8ef102a8'
+  }
+}
+
+const response = await fetch(url, options)
+const json = await response.json()
+let img = json.items.originalImageUrl
+---
+
+<img src={img}>
