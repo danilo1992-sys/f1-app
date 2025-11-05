@@ -1,9 +1,7 @@
 ---
-import { Race } from '../api/NextRace.ts'
 import Next from '../components/icons/Next.astro'
-
+import { Race } from '../api/NextRace'
 const data = await Race();
-console.log(data)
 ---
 
 <div class="text-2xl text-white pt-20 pb-2 flex pl-50">
@@ -11,20 +9,8 @@ console.log(data)
   <h1 class="font-bold"> Proxima Carrera</h1> 
   </div>
 
-  <div class="pl-50">
-  <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow-sm md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-    <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/docs/images/blog/image-4.jpg" alt="">
-    <div class="flex flex-col justify-between p-4 leading-normal">
-      <tbody>
-          <tr class="bg-blue-600 border-b border-blue-400">
-            <th scope="row" class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-            <th/>
-          </tr>
-          <tr> 
-            <th scope="row" class="px-6 py-4 font-medium bg-blue-500 text-blue-50 whitespace-nowrap dark:text-blue-100">
-          </th>
-        </tr>
-      </tbody> 
-    </div>
-  </a>
-</div>
+  <div class="text-red-400 pl-50 pt-10 pb-2">
+    {
+
+    }
+  </div>

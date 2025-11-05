@@ -1,21 +1,12 @@
-export interface NextRace {
-  record: number;
-  country: string;
-  circuitName: string;
-  city: string;
-  circuitLength: number;
-  fasterDriver: string;
-  fasterLapYear: number;
-}
+const url = 'https://f1api.dev/api/current/next';
 
-export async function Race(): Promise<NextRace | null>{  
-  const url = "https://f1api.dev/api/current/next"
+export async function Race() {
   try {
-    const response = await fetch(url)
-    const data: NextRace = await response.json()
-    return data;
-  } catch (e) {
-    console.error(e);  
-    return null; 
+    const response = await fetch(url);
+    if (!response.ok) throw new Error('Error al ejecutar la api');
+    return await response.json();
+  } catch (error) {
+    console.error('Error', error);
+    return [];
   }
 }
