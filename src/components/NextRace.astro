@@ -1,16 +1,16 @@
 ---
 import Next from '../components/icons/Next.astro'
 import { Race } from '../api/NextRace'
+import RaceImg from '../components/ImageCircuit.astro'
 const data = await Race();
+
 ---
 
 <div class="text-2xl text-white pt-20 pb-2 flex pl-50">
   <Next/>
   <h1 class="font-bold"> Proxima Carrera</h1> 
   </div>
-
+    <RaceImg />
   <div class="text-red-400 pl-50 pt-10 pb-2">
-    {
-
-    }
+    <p class="text-red-800"> {data?.race[0]?.circuit?.circuitId} </p>
   </div>

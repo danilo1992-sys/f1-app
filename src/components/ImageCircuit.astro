@@ -1,11 +1,9 @@
 ---
-interface Props{
-  circuitNameForImage: string; 
-}
+import { Race } from '../api/NextRace.ts'
+const data = await Race()
+const name = data?.race[0].circuit?.circuitName 
 
-const {circuitNameForImage} = Astro.props
-
-const url = `https://google-search72.p.rapidapi.com/imagesearch?q=${circuitNameForImage}gl=us&lr=lang_en&num=10&page=1`
+const url = `https://google-search72.p.rapidapi.com/imagesearch?q=${name}gl=us&lr=lang_en&num=10&page=1`
 const options = {
   method: 'GET',
   headers: {
@@ -15,7 +13,8 @@ const options = {
 
 const response = await fetch(url, options)
 const json = await response.json()
-let img = json.items.originalImageUrl
+const circuit = json[2].thumbnailImageUrl
 ---
 
-<img src={img}>
+
+
