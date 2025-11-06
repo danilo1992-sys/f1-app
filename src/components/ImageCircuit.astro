@@ -1,20 +1,22 @@
 ---
 import { Race } from '../api/NextRace.ts'
 const data = await Race()
-const name = data?.race[0].circuit?.circuitName 
+const name = data?.race[0].circuit?.circuitName
+const encode = encodeURIComponent(name)
 
-const url = `https://google-search72.p.rapidapi.com/imagesearch?q=${name}gl=us&lr=lang_en&num=10&page=1`
+const url = `https://google-search-json.p.rapidapi.com/search/image?q=${encode}&gl=US&lr=lang_en&num=10&page=1`
 const options = {
   method: 'GET',
   headers: {
-    'x-rapidapi-key': 'b9e2d7f868mshf9a025cb35dbb64p1b2a9djsn18ae8ef102a8'
+    'x-rapidapi-key': 'b9e2d7f868mshf9a025cb35dbb64p1b2a9djsn18ae8ef102a8',
+    'x-rapidapi-host': 'google-search-json.p.rapidapi.com'
   }
-}
+};
 
-const response = await fetch(url, options)
-const json = await response.json()
-const circuit = json[2].thumbnailImageUrl
----
-
+  const response = await fetch(url, options);
+  const {items} = await response.json();
+  const circuitName = items[0].thumbnailImageUrl
+--- 
+<img src={circuitName}>
 
 
