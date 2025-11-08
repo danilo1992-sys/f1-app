@@ -4,6 +4,30 @@ import { Race } from '../api/NextRace'
 import RaceImg from '../components/ImageCircuit.astro'
 const data = await Race();
 
+const ITEMS = [
+  {
+  title: "Pais"
+  },
+  {
+  title: "Ciudad"
+  },
+  {
+  title: "Record"
+  },
+  {
+  title: "Vuelta Rapida (Piloto)"
+  },
+  {
+  title: "Vuelta Rapida (Equipo)"
+  },
+  {
+  title: "Vuelta Rapida (Año)"
+  },
+  {
+  title: "Wikipedia"
+  },
+]
+
 ---
 
 <div class="text-2xl text-white pt-20 pb-2 flex pl-50">
@@ -11,6 +35,19 @@ const data = await Race();
   <h1 class="font-bold"> Proxima Carrera</h1> 
   </div>
     <RaceImg />
-  <div class="text-red-400 pl-50 pt-10 pb-2">
-    <p class="text-red-800"> {data?.race[0]?.circuit?.circuitId} </p>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-12 w-fit flex pl-50">
+    <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <tbody class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-col grid-rows-7">
+        {ITEMS.map (f1 => (
+        <th scope="row" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 px-6 py-4">
+          {f1.title}
+        </th>
+        ))}
+        </tr>
+
+      </tbody>
+    </table>
   </div>
+

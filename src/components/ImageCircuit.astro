@@ -1,22 +1,25 @@
 ---
 import { Race } from '../api/NextRace.ts'
+
 const data = await Race()
 const name = data?.race[0].circuit?.circuitName
-const encode = encodeURIComponent(name)
+const nameFormater = name.split(' ').join('+')
+const token = import.meta.env.API_KEY_TOKEN
 
-const url = `https://google-search-json.p.rapidapi.com/search/image?q=${encode}&gl=US&lr=lang_en&num=10&page=1`
 const options = {
-  method: 'GET',
-  headers: {
-    'x-rapidapi-key': 'b9e2d7f868mshf9a025cb35dbb64p1b2a9djsn18ae8ef102a8',
-    'x-rapidapi-host': 'google-search-json.p.rapidapi.com'
-  }
-};
+  method: "GET",
+  redirect: "follow"
+  };
 
-  const response = await fetch(url, options);
-  const {items} = await response.json();
-  const circuitName = items[0].thumbnailImageUrl
---- 
-<img src={circuitName}>
+  const url = `https://google.serper.dev/images?q=${nameFormater}&apiKey=${token}`
+  const response = await fetch(url, options)
+  const result = await response.json()
+  const img = result.images[0].imageUrl
+  ---
+
+  <img 
+  class="w-xl pl-50 pt-6"
+  src={img} >
+
 
 
