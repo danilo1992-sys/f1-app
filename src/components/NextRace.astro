@@ -2,8 +2,7 @@
 import Next from '../components/icons/Next.astro'
 import { Race } from '../api/NextRace'
 import RaceImg from '../components/ImageCircuit.astro'
-const data = await Race();
-console.log(data.circuit)
+const raceData = await Race();
 const ITEMS = [
   {
   title: "Pais"
@@ -46,11 +45,7 @@ const ITEMS = [
         </th>
         ))}
         </tr>
-        {data?.map((item:any) => (
-        <tr class=""> 
-          {item.circuit}
-        </tr>
-        }))
+        
       </tbody>
     </table>
   </div>

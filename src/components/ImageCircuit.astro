@@ -2,8 +2,7 @@
 import { Race } from '../api/NextRace.ts'
 
 const data = await Race()
-const name = data?.race[0].circuit?.circuitName
-const nameFormater = name.split(' ').join('+')
+const circuitName = data[0]?.circuit?.circuitName
 const token = import.meta.env.API_KEY_TOKEN
 
 const options = {
@@ -11,12 +10,11 @@ const options = {
   redirect: "follow"
   };
 
-  const url = `https://google.serper.dev/images?q=${nameFormater}&apiKey=${token}`
+  const url = `https://google.serper.dev/images?q=${circuitName}&apiKey=${token}`
   const response = await fetch(url, options)
   const result = await response.json()
   const img = result.images[0].imageUrl
   ---
-
   <img 
   class="w-xl pl-50 pt-6"
   src={img} >
