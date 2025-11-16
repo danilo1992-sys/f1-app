@@ -1,3 +1,5 @@
+
+
 const url = 'https://f1connectapi.vercel.app/api/current/last/race?limit=20'
 
 export default async function lastRace() {

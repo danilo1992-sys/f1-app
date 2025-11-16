@@ -37,7 +37,6 @@ const ITEMS = [
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-12 w-fit flex pl-50">
     <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-      <tbody class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-col grid-rows-7">
         {ITEMS.map (f1 => (
         <th scope="row" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 px-6 py-4">
@@ -45,8 +44,27 @@ const ITEMS = [
         </th>
         ))}
         </tr>
-        
-      </tbody>
+<tbody>
+  {raceData?.map((item) => {
+    const fields = [
+      item.circuit.country,
+      item.circuit.city,
+      item.circuit.lapRecord,
+      item.circuit.fastestLapDriverId,
+      item.circuit.fastestLapTeamId,
+      item.circuit.fastestLapYear,
+      item.circuit.url
+    ];
+    
+    return fields.map((field, index) => (
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-row-dense grid-cols-7 ">
+        <th scope="row" class="px-6 py-3.5 col-span-7">
+          {field}
+        </th>
+      </tr>
+    ));
+  })}
+</tbody>
     </table>
   </div>
 
