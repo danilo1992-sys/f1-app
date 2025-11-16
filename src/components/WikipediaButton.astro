@@ -1,0 +1,13 @@
+---
+import Wikipedia from "./icons/Wikipedia.astro"
+import {Race} from '../api/NextRace.ts'
+
+const data = await Race()
+const url = data[0].circuit.url 
+---
+<div class="flex">
+<a href={url} target="_blank"> 
+  <Wikipedia/>
+</a> 
+  <h3>Wikipedia</h3>
+</div>

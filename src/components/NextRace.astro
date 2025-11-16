@@ -2,6 +2,7 @@
 import Next from '../components/icons/Next.astro'
 import { Race } from '../api/NextRace'
 import RaceImg from '../components/ImageCircuit.astro'
+import WikipediaButton from './WikipediaButton.astro'
 const raceData = await Race();
 const ITEMS = [
   {
@@ -22,9 +23,6 @@ const ITEMS = [
   {
   title: "Vuelta Rapida (Año)"
   },
-  {
-  title: "Wikipedia"
-  },
 ]
 
 ---
@@ -35,36 +33,38 @@ const ITEMS = [
   </div>
     <RaceImg />
 
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-12 w-fit flex pl-50">
-    <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-col grid-rows-7">
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-12 pl-50">
+    <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 grid grid-rows-7 grid-cols-2">
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-col grid-rows-7 w-fit">
         {ITEMS.map (f1 => (
         <th scope="row" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 px-6 py-4">
           {f1.title}
         </th>
         ))}
+        <th scope="col" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 px-6 py-4">
+          <WikipediaButton/>
+        </th>
         </tr>
 <tbody>
-  {raceData?.map((item) => {
+  {raceData?.map((item:any) => {
     const fields = [
       item.circuit.country,
       item.circuit.city,
       item.circuit.lapRecord,
       item.circuit.fastestLapDriverId,
       item.circuit.fastestLapTeamId,
-      item.circuit.fastestLapYear,
-      item.circuit.url
+      item.circuit.fastestLapYear
     ];
     
     return fields.map((field, index) => (
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-row-dense grid-cols-7 ">
-        <th scope="row" class="px-6 py-3.5 col-span-7">
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+        <th scope="col" class="px-6 py-3.5 col-span-7 w-fit">
           {field}
         </th>
       </tr>
     ));
-  })}
-</tbody>
-    </table>
-  </div>
+    })}
+  </tbody>
+</table>
+</div>
 
