@@ -4,8 +4,9 @@ export async function Race() {
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('Error al ejecutar la api');
-    const data = await response.json()
-    return data.race
+    const apiResponse = await response.json()
+    console.log(apiResponse[0].schedule.race.data)
+    return apiResponse.race
   } catch (error) {
     console.error('Error', error);
     return []

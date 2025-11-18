@@ -1,0 +1,51 @@
+---
+const { TargetTime } = Astro.props; 
+console.log(TargetTime)
+const DataTime = new Date(TargetTime).getTime();
+---
+<div class="grid auto-cols-max grid-flow-col gap-5 text-center pl-50">
+  <div class="flex flex-col">
+    <span class="countdown font-mono text-5xl">
+      <span id="days" class="--value:0;" aria-live="polite" aria-label="15">15</span>
+    </span>
+    Dias 
+  </div>  <div class="flex flex-col" id="hours">
+    <span class="countdown font-mono text-5xl">
+      <span class="--value:15;" aria-live="polite" aria-label="15">15</span>
+    </span>
+    Horas 
+  </div>  <div class="flex flex-col" id="minutes">
+    <span class="countdown font-mono text-5xl">
+      <span class="--value:15;" aria-live="polite" aria-label="15">15</span>
+    </span>
+    Minutos 
+  </div>  <div class="flex flex-col" id="seconds">
+    <span class="countdown font-mono text-5xl">
+      <span class="--value:15;" aria-live="polite" aria-label="15">15</span>
+    </span>
+    Segundos
+  </div>
+</div>
+
+
+<script define:vars={{ DataTime }}>
+  function updateTime(){ 
+  const now = new Date().getTime();
+  const distance = DataTime - now;
+
+  const days = Math.floor((distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)) ;
+  const minutes = Math.floor((distance % (1000 * 60 * 60 )) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60 )) / 1000);
+
+
+  document.getElementById('days').textContent = String(days).padStart(2, '0');
+  document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+  document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+  document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+  }
+
+  updateTime();
+
+  setInterval(updateTime, 1000)
+</script>

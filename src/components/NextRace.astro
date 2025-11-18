@@ -3,7 +3,11 @@ import Next from '../components/icons/Next.astro'
 import { Race } from '../api/NextRace'
 import RaceImg from '../components/ImageCircuit.astro'
 import WikipediaButton from './WikipediaButton.astro'
+import Countdown from './Countdown.astro'
 const raceData = await Race();
+console.log(raceData)
+const Timedata = raceData[0].schedule.race.data
+console.log(Timedata)
 const ITEMS = [
   {
   title: "Pais"
@@ -30,9 +34,9 @@ const ITEMS = [
 <div class="text-2xl text-white pt-20 pb-2 flex pl-50">
   <Next/>
   <h1 class="font-bold"> Proxima Carrera</h1> 
-  </div>
+</div>
+<Countdown targetTime={Timedata}/>
     <RaceImg />
-
   <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-12 pl-50">
     <table class="text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 grid grid-rows-7 grid-cols-2">
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 grid grid-flow-col grid-rows-7 w-fit">
