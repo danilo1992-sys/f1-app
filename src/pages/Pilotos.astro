@@ -2,9 +2,49 @@
 import Layouts from '../layouts/Layout.astro'
 import {Pilots} from '../api/Pilots.ts'
 const data = await Pilots()
+
+import f1Api from 'f1-api-node'
+const driver = await f1Api.getDriverLineup();
+
+const ITEMS = [
+  {
+    title: "Nombre",
+    item: driver[0].name, 
+  },
+  {
+    title: "Numero",
+    item: data[0].drivers?.number,
+  },
+  {
+    title: "Pais",
+    item: data[0].drivers?.nationality,
+  },
+  {
+    title: "Equipo",
+    item: driver[0].team,
+  },
+  {
+    title: "Foto",
+    item: driver[0].driverImage,
+  },
+  {
+    title: "Url",
+    item: data[0].drivers?.shortname, 
+  }
+]
+
 ---
 <Layouts>
-  <div class="card lg:card-side bg-base-100 shadow-sm pt-20 pl-30">
-     
+  <div class="card lg:card-side bg-base-100 shadow-sm pt-20 w-fit">
+  {ITEMS.map((item) => (
+    <figure>
+      <img src={item.item} class="w-2xs pl-50 pt-6">
+    </figure> 
+    <div class="card-body">
+      <h2 class="card-title">{item.title}</h2> 
+    </div>
+  ))}
   </div>
 </Layouts> 
+
+
