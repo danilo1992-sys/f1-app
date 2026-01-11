@@ -1,46 +1,86 @@
-# Astro Starter Kit: Basics
+# F1 App
 
-```sh
-pnpm create astro@latest -- --template basics
-```
+Aplicación web / móvil para seguimiento y visualización de datos de la Fórmula 1.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🏁 Descripción del Proyecto
 
-## 🚀 Project Structure
+**F1 App** es una aplicación diseñada para brindar a los aficionados de la Fórmula 1 acceso rápido y fácil a información actualizada sobre el campeonato, incluyendo resultados de carreras, clasificaciones de pilotos y constructores, y el calendario de la temporada.
 
-Inside of your Astro project, you'll see the following folders and files:
+El objetivo principal es ofrecer una interfaz de usuario limpia e intuitiva para consumir los datos clave de la F1.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## ✨ Características
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+* **Clasificaciones de la Temporada:** Visualización actualizada de las posiciones de pilotos y constructores.
+* **Calendario de Carreras:** Muestra el cronograma completo de la temporada con fechas, horarios y sedes.
+* **Resultados de Carrera:** Permite consultar los resultados detallados de cada Gran Premio.
+* **Detalles del Piloto:** Perfiles con estadísticas clave y datos históricos (opcional).
 
-## 🧞 Commands
+## 🛠️ Tecnologías Utilizadas
 
-All commands are run from the root of the project, from a terminal:
+* **Frontend:** [Indicar tecnología, ej: `Next.js`, `React`, `Vue.js`]
+* **Backend:** [Indicar tecnología, ej: `Node.js` (Express), `Java` (Spring Boot), `Python` (Flask)]
+* **Base de Datos:** [Indicar tecnología, ej: `PostgreSQL`, `MongoDB`, `Supabase`]
+* **API de Datos:** [Indicar fuente de datos, ej: `Ergast Developer API`, `F1 API`]
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+**Nota:** *Asegúrate de reemplazar esta sección con las tecnologías específicas que utilizaste en este repositorio.*
 
-## 👀 Want to learn more?
+## 🚀 Instalación y Configuración
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Sigue estos pasos para configurar y ejecutar el proyecto localmente.
+
+### Prerrequisitos
+
+* [Mencionar requisitos de software, ej: `Node.js v18+`, `JDK 17+`, `Python 3.9+`]
+* `git`
+
+### Pasos
+
+1.  **Clonar el repositorio:**
+
+    ```bash
+    git clone [https://github.com/danilo1992-sys/f1-app.git](https://github.com/danilo1992-sys/f1-app.git)
+    cd f1-app
+    ```
+
+2.  **Instalar dependencias (Ejemplo para un proyecto Node.js):**
+
+    ```bash
+    npm install
+    # o
+    yarn install
+    ```
+
+3.  **Configuración del Entorno:**
+
+    Crea un archivo `.env` en el directorio raíz y añade tus variables de entorno, como claves de API o configuraciones de base de datos.
+
+    ```
+    # Ejemplo de archivo .env
+    API_KEY=tu_clave_de_acceso
+    PORT=3000
+    ```
+
+4.  **Ejecutar la aplicación (Ejemplo):**
+
+    ```bash
+    npm start
+    # o
+    npm run dev
+    ```
+
+La aplicación debería estar disponible en `http://localhost:[PUERTO]` (por defecto suele ser 3000 u 8080).
+
+## 🤝 Contribuciones
+
+Las contribuciones son bienvenidas. Si deseas mejorar el proyecto, reportar un error o sugerir una nueva característica, por favor:
+
+1.  Abre un *issue* para discutir el cambio propuesto.
+2.  Haz un *fork* del repositorio.
+3.  Crea una nueva rama (`git checkout -b feature/nueva-funcionalidad`).
+4.  Realiza tus cambios y haz *commit* (`git commit -m 'feat: Añade nueva funcionalidad X'`).
+5.  Sube los cambios (`git push origin feature/nueva-funcionalidad`).
+6.  Abre un *Pull Request*.
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia [Nombre de la Licencia, ej: MIT, Apache 2.0].
